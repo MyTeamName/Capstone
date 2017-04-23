@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Quotes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  
+  <ion-label>Start A Quote</ion-label>
+  <ion-segment [(ngModel)]="quote">
+    <ion-segment-button value="rfQuote">
+      Request For Quote 
+    </ion-segment-button>
+    <ion-segment-button value="ionic">
+      Ionic
+    </ion-segment-button>
+  </ion-segment>
+
+
+
+  <div [ngSwitch]="quote">
+    <ion-list *ngSwitchCase="'rfQuote'">
+      <ion-item>
+        <a href="https://github.com/">GitHub</a>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'ionic'">
+      <ion-item>
+        text2
+      </ion-item>
+    </ion-list>
+  </div>
+      
+
+</ion-content>
