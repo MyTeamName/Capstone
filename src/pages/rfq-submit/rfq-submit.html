@@ -12,58 +12,67 @@
 
 </ion-header>
 
-
+<!--Change radio to ?button, should be larger/easier for mobile
+-->
 <ion-content>
   <ion-list-header>Request for Quote Form</ion-list-header>
-  <ion-list>
+  <ion-list radio-group [(ngModel)]="custType" (ionChange)="printRadioValue()">
     <ion-item>
-      <ion-radio value="customerNumber" item-left checked></ion-radio>
-      <ion-label color="primary">Customer Number</ion-label>
-      <ion-input placeholder="Enter Customer Number"></ion-input>
+      <ion-radio value="customerNumber" item-left></ion-radio>
+      <ion-label color="primary"> Customer Number </ion-label>
+      <!--<ion-label color="primary"> Customer Number </ion-label>
+      -->
+      <!--<ion-input type="text"></ion-input>-->
     </ion-item>
     <ion-item>
       <ion-radio value="prospect" item-left></ion-radio>
       <ion-label color="primary">Prospect</ion-label>
     </ion-item>
   </ion-list>
-
   <ion-list>
-    <ion-item>
-      <ion-label color="primary">Business Name</ion-label>
-      <ion-input placeholder="Enter Business Name"></ion-input>
+    <ion-item *ngIf="custType=='prospect'">
+      <ion-input placeholder="Enter Business Name" type='text' name='bizName' [(ngModel)]='bizName'></ion-input>
+    </ion-item>
+    <ion-item *ngIf="custType=='prospect'">
+      <ion-input placeholder="Enter Contact Name" type="text" name='custName' [(ngModel)]='custName'></ion-input>
+    </ion-item>
+    <ion-item *ngIf="custType=='prospect'">
+      <ion-input placeholder="Enter City" type="text" name='cityName' [(ngModel)]='cityName'></ion-input>
+    </ion-item>
+    <ion-item *ngIf="custType=='prospect'">
+      <ion-input placeholder="Enter State" type="text" name='stateName' [(ngModel)]='stateName'></ion-input>
+    </ion-item>
+    <ion-item *ngIf="custType=='prospect'">
+      <ion-input placeholder="Enter Zip" type="text" name='zipCode' [(ngModel)]='zipCode'></ion-input>
+      <!--prefer no form visible initially
+    -->
     </ion-item>
     <ion-item>
-      <ion-label color="primary">Contact Name</ion-label>
-      <ion-input placeholder="Enter Contact Name"></ion-input>
+      <ion-input placeholder="Enter Requested Item" type="text" name='itemName' [(ngModel)]='itemName'></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label color="primary">City</ion-label>
-      <ion-input placeholder="Enter City"></ion-input>
+      <ion-input placeholder="Enter Amount" type="text" name='itemQuantity' [(ngModel)]='itemQuantity' ></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label color="primary">State</ion-label>
-      <ion-input placeholder="Enter State"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary">Zip Code</ion-label>
-      <ion-input placeholder="Enter Zip"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary">Product Needed</ion-label>
-      <ion-input placeholder="Enter Requested Item"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary">Quantity or Length</ion-label>
-      <ion-input placeholder="Enter Amount"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary">Target Price</ion-label>
-      <ion-input placeholder="Enter Target Price"></ion-input>
+      <ion-input placeholder="Enter Target Price" type="text" name='targetPrice' [(ngModel)]='targetPrice'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Notes</ion-label>
-      <ion-textarea placeholder="Enter a Note to Purchasing"></ion-textarea>
+      <ion-textarea placeholder="Enter a Note to Purchasing" type="text" name='purchNotes' [(ngModel)]='purchNotes'></ion-textarea>
     </ion-item>
   </ion-list>
-  <button ion-button item-center (click)="navToRFQFulfill()">SUBMIT TO PURCHASING</button>
+  <button ion-button (click)="navToRfqFulfill()">SUBMIT TO PURCHASING</button>
 </ion-content>
+<!--<ion-list>
+
+  <ion-item>
+    <ion-input type="text" name="myInput" [(ngModel)]="myInput"></ion-input>
+  </ion-item>
+  <ion-list>
+    <button ion-button (click)="setValue(myInput)">Save Info</button>
+  </ion-list>
+
+
+  <ion-item *ngFor="let item of myArray">{{ item }} </ion-item>
+</ion-list>
+-->

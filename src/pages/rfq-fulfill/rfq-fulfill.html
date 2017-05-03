@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>rfqFulfill</ion-title>
+    <ion-title>Welcome to the RFQ Fulfill Form</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -17,8 +17,7 @@
   <ion-list-header>Request for Quote from Sales</ion-list-header>
   <ion-list>
     <ion-item>
-      <ion-label color="primary">Salesperson</ion-label>
-      <ion-input placeholder="How do I autofill?"></ion-input>
+      <ion-label color="primary">Salesperson Name </ion-label>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Salesperson Number</ion-label>
@@ -32,67 +31,72 @@
       <ion-label color="primary">Prospect</ion-label>
     </ion-item>
     <ion-item>
-      <ion-label color="primary">Business Name</ion-label>
-      <ion-input placeholder="Enter Business Name"></ion-input>
+      <ion-label color="primary">Business Name </ion-label>
+      <ion-input type="text" readonly=true value="{{ bizName }}"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Contact Name</ion-label>
-      <ion-input placeholder="Enter Contact Name"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label color="primary">Address</ion-label>
-      <ion-input placeholder="Autofill Address"></ion-input>
+      <ion-input type='text' readonly=true value='{{ custName }}'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">City</ion-label>
-      <ion-input placeholder="Enter City"></ion-input>
+      <ion-input type='text' readonly=true value='{{ cityName }}'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">State</ion-label>
-      <ion-input placeholder="Enter State"></ion-input>
+      <ion-input type='text' readonly=true value='{{ stateName }}'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Zip Code</ion-label>
-      <ion-input placeholder="Enter Zip"></ion-input>
+      <ion-input type='text' readonly=true value='{{ zipCode }}'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Product Needed</ion-label>
-      <ion-input placeholder="Enter Requested Item"></ion-input>
+      <ion-input type='text' readonly=true value='{{ itemName }}'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Quantity or Length</ion-label>
-      <ion-input placeholder="Enter Amount"></ion-input>
+      <ion-input type='text' readonly=true value='{{ itemQuantity }}'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Target Price</ion-label>
-      <ion-input placeholder="Autofill, and All Above"></ion-input>
+      <ion-input type='text' readonly=true value='{{ targetPrice }}'></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Notes from Sales</ion-label>
+      <ion-input type='text' readonly=true value='{{ purchNotes }}'></ion-input>
     </ion-item>
   </ion-list>
   <ion-list-header>Request for Quote - Purchasing Form</ion-list-header>
   <ion-list>
     <ion-item>
-      <ion-label color="primary">Vendor</ion-label>
-      <ion-input placeholder="Enter Vendor Number"></ion-input>
+      <ion-label color="primary">Vendor Number</ion-label>
+      <ion-input placeholder="Enter Vendor Number"type="text" name='vendorNumber' [(ngModel)]='vendorNumber'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Vendor Name</ion-label>
-      <ion-input placeholder="Enter Vendor Name"></ion-input>
+      <ion-input placeholder="Enter Vendor Name" type="text" name='vendorName' [(ngModel)]='vendorName'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Cost</ion-label>
-      <ion-input placeholder="Enter Cost from Vendor"></ion-input>
+      <ion-input placeholder="Enter Cost from Vendor" type="text" name='houseCost' [(ngModel)]='houseCost'></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label color="primary">Ship Time</ion-label>
+      <ion-input placeholder="Enter Shipping Time" type="text" name='shipTime' [(ngModel)]='shipTime'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Vendor Notes</ion-label>
-      <ion-textarea placeholder="Enter an Vendor Note"></ion-textarea>
+      <ion-textarea placeholder="Enter an Internal Vendor Note" type="text" name='vendorNotes' [(ngModel)]='vendorNotes'></ion-textarea>
     </ion-item>
     <ion-item>
       <ion-label color="primary">Customer Price</ion-label>
-      <ion-input placeholder="Enter Customer Price"></ion-input>
+      <ion-input placeholder="Enter Customer Price" type="text" name='custPrice' [(ngModel)]='custPrice'></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Note to Sales</ion-label>
-      <ion-textarea placeholder="Enter a Note to Sales"></ion-textarea>
+      <ion-textarea placeholder="Enter a Note to Sales" type="text" name='salesNotes' [(ngModel)]='salesNotes'></ion-textarea>
     </ion-item>
   </ion-list>
+  <button ion-button item-center (click)="navToRfqComplete()">COMPLETE RFQ</button>
 </ion-content>

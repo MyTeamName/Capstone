@@ -1,21 +1,20 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-
 /**
- * Generated class for the RfqFulfill page.
+ * Generated class for the RfqComplete page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage({
-  name: 'rfq-fulfill',
+  name: 'rfq-complete',
 })
 @Component({
-  selector: 'page-rfq-fulfill',
-  templateUrl: 'rfq-fulfill.html',
+  selector: 'page-rfq-complete',
+  templateUrl: 'rfq-complete.html',
 })
-export class RfqFulfill {
+export class RfqComplete {
   bizName;
   custName;
   cityName;
@@ -28,9 +27,6 @@ export class RfqFulfill {
   shipTime;
   custPrice;
   salesNotes;
-  itemName;
-  itemQuantity;
-  
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.bizName = navParams.get('bizName');
@@ -38,16 +34,18 @@ export class RfqFulfill {
     this.cityName = navParams.get('cityName');
     this.stateName = navParams.get('stateName');
     this.zipCode = navParams.get('zipCode');
+    this.vendorNumber = navParams.get('vendorNumber');
+    this.vendorName = navParams.get('vendorName');
+    this.houseCost = navParams.get('houseCost');
+    this.vendorNotes = navParams.get('vendorNotes');
+    this.shipTime = navParams.get('shipTime');
+    this.custPrice = navParams.get('custPrice');
+    this.salesNotes = navParams.get('salesNotes');
+
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RfqFulfill');
-  }
-  navToRfqComplete() {
-    this.navCtrl.push('rfq-complete', {
-      id: 9012, vendorName: this.vendorName,
-      shipTime: this.shipTime, custPrice: this.custPrice
-    });
+    console.log('ionViewDidLoad RfqComplete');
   }
 
 }

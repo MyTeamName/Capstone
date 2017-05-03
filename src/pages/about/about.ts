@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+
 
 
 
@@ -7,7 +7,7 @@ import { NavController } from 'ionic-angular';
   selector: 'page-about',
   templateUrl: 'about.html',
   template: `
-    <form (ngSubmit)="loginForm()">
+    <form ion-form (ngSubmit)="loginForm()">
       <ion-item>
         <ion-label>User</ion-label>
         <ion-input type="text" [(ngModel)]="user.title" name="user"></ion-input>
