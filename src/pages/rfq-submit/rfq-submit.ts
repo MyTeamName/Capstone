@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Http, Response, Jsonp }          from '@angular/http';
+import { Http, Response }          from '@angular/http';
 
 import { IonicPage, NavController, NavParams } from 'ionic-angular'
 import { Storage } from '@ionic/storage';
@@ -39,15 +39,13 @@ export class RfqSubmit {
   zipCode;
   myArray = [];
   custType;
-  retdata;
 
   // static get parameters() {
   //       return [[Http]];
   //   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,private jsonp: Jsonp) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,private http: Http) {
     //this.RfqSubmit.bizName;
-    //this.times=0;
   }
 
   ionViewDidLoad() {
@@ -72,23 +70,15 @@ export class RfqSubmit {
   }
 
   private extractData(res: Response) {
-    let body = res.json();
-    return body.data || { };
+    let body = res.json() || { };
+    console.log(body);
+    return body
   }
 
   printRadioValue() {
     //getCustomer(customerNumber) {
-        let params = new URLSearchParams();
-        params.set('format', 'json');
-        params.set('callback', 'JSONP_CALLBACK');
-
-        //params.set('callback', `__ng_jsonp__.__req${this.times}.finished`);
-        //params.set('callback', "__ng_jsonp__.__req0.finished");
-
        var url = 'https://champquotes.isys4283.walton.uark.edu/api/customers';
-       var response = this.jsonp.get(url, { search: params }).map(this.extractData).subscribe();
-
-    console.log(response);
+       var response = this.http.get(url).map(this.extractData).subscribe();
        return response;
   }
 }
