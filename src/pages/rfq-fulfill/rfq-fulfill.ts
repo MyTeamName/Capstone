@@ -30,7 +30,7 @@ export class RfqFulfill {
   salesNotes;
   itemName;
   itemQuantity;
-  
+
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.bizName = navParams.get('bizName');
@@ -45,8 +45,9 @@ export class RfqFulfill {
   }
   navToRfqComplete() {
     this.navCtrl.push('rfq-complete', {
-      id: 9012, vendorName: this.vendorName,
-      shipTime: this.shipTime, custPrice: this.custPrice
+      id: 9012, bizName: this.bizName, custName: this.custName, cityName: this.cityName, stateName: this.stateName, 
+        zipCode: this.zipCode, itemName: this.itemName, vendorName: this.vendorName, shipTime: this.shipTime, 
+        custPrice: this.custPrice, salesNotes: this.salesNotes
     });
   }
 
