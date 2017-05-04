@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response, Jsonp }          from '@angular/http';
 
 import { IonicPage, NavController, NavParams } from 'ionic-angular'
 import { Storage } from '@ionic/storage';
 
 // import { CustomerService } from '../providers/customer-service/customer-service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 /**
@@ -37,13 +39,15 @@ export class RfqSubmit {
   zipCode;
   myArray = [];
   custType;
+  retdata;
 
   // static get parameters() {
   //       return [[Http]];
   //   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,private jsonp: Jsonp) {
     //this.RfqSubmit.bizName;
+    //this.times=0;
   }
 
   ionViewDidLoad() {
@@ -67,9 +71,24 @@ export class RfqSubmit {
     //     return response;
   }
 
+  private extractData(res: Response) {
+    let body = res.json();
+    return body.data || { };
+  }
 
   printRadioValue() {
-    console.log(this.custType);
+    //getCustomer(customerNumber) {
+        let params = new URLSearchParams();
+        params.set('format', 'json');
+        params.set('callback', 'JSONP_CALLBACK');
+
+        //params.set('callback', `__ng_jsonp__.__req${this.times}.finished`);
+        //params.set('callback', "__ng_jsonp__.__req0.finished");
+
+       var url = 'https://champquotes.isys4283.walton.uark.edu/api/customers';
+       var response = this.jsonp.get(url, { search: params }).map(this.extractData).subscribe();
+
+    console.log(response);
+       return response;
   }
 }
-
