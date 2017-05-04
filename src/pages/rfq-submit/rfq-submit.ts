@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Response }          from '@angular/http';
 
 import { IonicPage, NavController, NavParams } from 'ionic-angular'
 import { Storage } from '@ionic/storage';
 
 // import { CustomerService } from '../providers/customer-service/customer-service';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 
 /**
@@ -42,7 +44,7 @@ export class RfqSubmit {
   //       return [[Http]];
   //   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public storage: Storage,private http: Http) {
     //this.RfqSubmit.bizName;
   }
 
@@ -67,9 +69,16 @@ export class RfqSubmit {
     //     return response;
   }
 
+  private extractData(res: Response) {
+    let body = res.json() || { };
+    console.log(body);
+    return body
+  }
 
   printRadioValue() {
-    console.log(this.custType);
+    //getCustomer(customerNumber) {
+       var url = 'https://champquotes.isys4283.walton.uark.edu/api/customers';
+       var response = this.http.get(url).map(this.extractData).subscribe();
+       return response;
   }
 }
-
